@@ -1,5 +1,5 @@
 export default function createRequest(parametr, method = 'GET', call) {
-  const http = 'http://localhost';
+  const http = 'https://homeworks-ahj-tickets.herokuapp.com/';
   const port = 7070;
 
   const xhr = new XMLHttpRequest();
