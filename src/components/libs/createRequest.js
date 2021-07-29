@@ -1,25 +1,26 @@
-export default function createRequest(parametr, metod = 'GET') {
+export default function createRequest(parametr, method = 'GET', call) {
   const http = 'http://localhost';
   const port = 7070;
 
-  const params = new URLSearchParams();
-  params.append('method', parametr);
   const xhr = new XMLHttpRequest();
-  if (metod === 'GET') {
+  if (method === 'GET') {
+    const params = new URLSearchParams();
+    parametr.forEach(({ name, value }) => params.append(name, value));
     xhr.open('GET', `${http}:${port}/?${params}`);
     xhr.send();
   } else if (method === 'POST') {
+    const params = JSON.stringify(parametr);
     xhr.open('POST', `${http}:${port}`);
     xhr.send(params);
   } else {
     return;
   }
+  /* eslint-disable consistent-return */
   xhr.addEventListener('load', () => {
     if (xhr.status >= 200 && xhr.status < 300) {
       try {
         const data = JSON.parse(xhr.responseText);
-        console.log(data);
-        return data;
+        call(data);
       } catch (e) {
         return console.error(e);
       }
