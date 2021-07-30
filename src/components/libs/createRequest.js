@@ -16,7 +16,7 @@ export default function createRequest(parametr, method = 'GET', call) {
   } else {
     return;
   }
-  /* eslint-disable no-restricted-globals */
+  /* eslint-disable consistent-return */
   xhr.addEventListener('load', () => {
     if (xhr.status >= 200 && xhr.status < 300) {
       try {
