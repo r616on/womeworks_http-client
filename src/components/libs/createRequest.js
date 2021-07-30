@@ -1,5 +1,6 @@
 export default function createRequest(parametr, method = 'GET', call) {
   const http = 'https://homeworks-ahj-tickets.herokuapp.com/';
+  // const http = 'http://localhost';
   const port = 7070;
 
   const xhr = new XMLHttpRequest();
@@ -15,7 +16,7 @@ export default function createRequest(parametr, method = 'GET', call) {
   } else {
     return;
   }
-  /* eslint-disable consistent-return */
+  /* eslint-disable no-restricted-globals */
   xhr.addEventListener('load', () => {
     if (xhr.status >= 200 && xhr.status < 300) {
       try {
